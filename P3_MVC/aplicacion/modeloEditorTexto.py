@@ -7,11 +7,13 @@ Created on Thu Mar 11 09:06:29 2021
 
 import os
 
+
 def abrirArchivo(direccion):
 
     fichero = open(direccion, 'r')
     with fichero:
         data = fichero.read()
+        fichero.close()
         return data
         
 def guardarArchivo(direccion, datos):
@@ -24,5 +26,7 @@ def guardarArchivo(direccion, datos):
 
 
 def listarDirectorio (direccion):
-    contenido = os.listdir(direccion)
-    return contenido
+    
+    #Con listdir devolvemos el listado completo de archivos en el directorio pasado.
+    # Posteriormente con endswitch limitamos las extensiones que deseamos mostrar
+    return [fname for fname in os.listdir(direccion) if fname.endswith(('.txt', '.py'))]     

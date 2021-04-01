@@ -7,13 +7,13 @@ Created on Thu Mar 11 09:06:47 2021
 
 import sys
 
-from PyQt5.QtWidgets import (QMainWindow, QTextEdit,
-                             QAction, QFileDialog, QApplication, QWidget, 
-                             QPushButton, QLabel, QLineEdit, QHBoxLayout,
-                             QGridLayout, QVBoxLayout, QListWidget)
+from PyQt5.QtWidgets import (QTextEdit, QFileDialog, QApplication, 
+                             QWidget, QPushButton, QLabel, QLineEdit, 
+                             QHBoxLayout, QGridLayout, QVBoxLayout, QListWidget)
 
 from pathlib import Path
 
+from PyQt5.QtGui import QIcon
  
 from aplicacion import controladorEditorTexto as controlador
 
@@ -37,10 +37,11 @@ class EditorText (QWidget):
         
         #Creacion de los Botones
          
-        botonSeleccionarCarpeta = QPushButton ('Seleccionar',self)           
-        botonGuardar = QPushButton ('Guardar',self)           
-        botonGuardarComo = QPushButton ('Guardar Como',self)           
-        botonNuevoArchivo = QPushButton ('Nuevo Archivo',self)  
+        self.botonSeleccionarCarpeta = QPushButton ('Seleccionar',self)           
+        self.botonGuardar = QPushButton ('Guardar',self)           
+        self.botonGuardarComo = QPushButton ('Guardar Como',self)           
+        self.botonNuevoArchivo = QPushButton ('Nuevo Archivo',self)  
+        
         #Creacion del editor de textos 
         self.editorTexto = QTextEdit()
         
@@ -55,9 +56,9 @@ class EditorText (QWidget):
         # proceder a su posicionamiento
         
         layoutBotones = QHBoxLayout()
-        layoutBotones.addWidget(botonNuevoArchivo)
-        layoutBotones.addWidget(botonGuardar)
-        layoutBotones.addWidget(botonGuardarComo)        
+        layoutBotones.addWidget(self.botonNuevoArchivo)
+        layoutBotones.addWidget(self.botonGuardar)
+        layoutBotones.addWidget(self.botonGuardarComo)        
         layoutBotones.addStretch()
         # Ahora creamos la rejilla para el listado de archivos y el editor
         
@@ -66,11 +67,20 @@ class EditorText (QWidget):
         layoutListArchivos.addWidget(self.listArchivos)
         layoutListArchivos.addSpacing(3)
         
-        layoutEditorTextos = QHBoxLayout()
-        layoutEditorTextos.addSpacing(3)
-        layoutEditorTextos.addLayout(layoutListArchivos)
-        layoutEditorTextos.addSpacing(1)
-        layoutEditorTextos.addWidget(self.editorTexto)
+        
+        #Ahora crearemos el Grid para la gestión del layout del listArchivos y
+        # el editorTexto
+
+        layoutEditorTexto = QHBoxLayout()
+        layoutEditorTexto.addWidget(self.editorTexto)
+        
+        
+        layoutEditor = QGridLayout() 
+        layoutEditor.addLayout(layoutListArchivos,0,0)
+        
+        layoutEditor.addLayout(layoutEditorTexto,0,1)
+        layoutEditor.setColumnStretch(0, 1)
+        layoutEditor.setColumnStretch(1, 2)
       
         # Creamos el Layout de la seccion superior
         
@@ -79,33 +89,38 @@ class EditorText (QWidget):
         layoutCarpeta.addWidget(labelCarpeta)
         layoutCarpeta.addSpacing(2)
         layoutCarpeta.addWidget(self.editCarpeta)
-        layoutCarpeta.addWidget(botonSeleccionarCarpeta)
+        layoutCarpeta.addWidget(self.botonSeleccionarCarpeta)
         
         # Ahora una vez gestionados todos los layout los introducimos en el
         # layout principal
         
         mainLayout = QVBoxLayout()
         mainLayout.addLayout(layoutCarpeta)
-        mainLayout.addLayout(layoutEditorTextos)
+        mainLayout.addLayout(layoutEditor)
         mainLayout.addLayout(layoutBotones)
         
         #Finalizado el posicionamiento ya podemos proceder a las conexiones de
         #eventos
         
-        botonSeleccionarCarpeta.clicked.connect(self.seleccionarCarpeta)
-        botonGuardar.clicked.connect(self.guardarArchivo)
-        botonGuardarComo.clicked.connect(self.guardarArchivoComo)
-        botonNuevoArchivo.clicked.connect(self.nuevoArchivo)
-        self.listArchivos.itemDoubleClicked.connect(self.abrirArchivo)
+        self.makeConnections()
         
         self.setLayout(mainLayout)
         
         self.setGeometry(300, 300, 750, 650)
         self.setWindowTitle(u"Editor de Textos")
+        self.setWindowIcon(QIcon('imagenes/logo.jfif'))
         self.show()
         
     
     #Funciones de la Vista
+    
+    def makeConnections(self):
+        self.botonSeleccionarCarpeta.clicked.connect(self.seleccionarCarpeta)
+        self.botonGuardar.clicked.connect(self.guardarArchivo)
+        self.botonGuardarComo.clicked.connect(self.guardarArchivoComo)
+        self.botonNuevoArchivo.clicked.connect(self.nuevoArchivo)
+        self.listArchivos.itemDoubleClicked.connect(self.abrirArchivo)
+
     
     def abrirArchivo(self, archivoSeleccionado):
       
@@ -123,9 +138,17 @@ class EditorText (QWidget):
             self.guardarArchivoComo()
         
     def guardarArchivoComo(self):
-        direccionFicheroCompleto = QFileDialog.getSaveFileName(self, 'Guardar Archivo', self.directorio_home)
-        self.direccionArchivo = direccionFicheroCompleto[0]
+        
+        fileDialog = QFileDialog()
+        fileDialog.setDefaultSuffix('.txt')
+        direccionFicheroCompleto = fileDialog.getSaveFileName(self, 'Guardar Archivo', self.directorio_home, 'Text files (.txt)')
+        DireccionFicheroSinExtension = direccionFicheroCompleto[0].split(".")
+        
+            
+        self.direccionArchivo = DireccionFicheroSinExtension[0] + '.txt'
+        
         self.guardarArchivo()
+        self.listarDirectorio()
        
     
     def seleccionarCarpeta(self):
