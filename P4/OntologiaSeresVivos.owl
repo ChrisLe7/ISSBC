@@ -1,0 +1,313 @@
+<?xml version="1.0"?>
+<Ontology xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://www.semanticweb.org/chrisle/ontologies/2021/3/untitled-ontology-10"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     ontologyIRI="http://www.semanticweb.org/chrisle/ontologies/2021/3/untitled-ontology-10">
+    <Prefix name="" IRI="http://www.semanticweb.org/chrisle/ontologies/2021/3/untitled-ontology-10"/>
+    <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
+    <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+    <Prefix name="xml" IRI="http://www.w3.org/XML/1998/namespace"/>
+    <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
+    <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
+    <Annotation>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <Literal>Ontologia planteada sobre el dominio de los seres vivos.</Literal>
+    </Annotation>
+    <Declaration>
+        <Class IRI="#Acuatico"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Anfibios"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Angiosperma"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Animal"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Ave"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Carnivoro"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ConFlores"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Delfin"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Gimnosperma"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Habitat"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Helecho"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Herbivoro"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Humano"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Leon"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Mamífero"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Musgo"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Omnivoro"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Planta"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Reptiles"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#SerVivo"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#SinFlores"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Terrestre"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Tipo"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Vaca"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#come"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#es_comido_por"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#vive_en"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#pepe"/>
+    </Declaration>
+    <EquivalentClasses>
+        <Class IRI="#Acuatico"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#Habitat"/>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#vive_en"/>
+                <Class IRI="#Acuatico"/>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#Carnivoro"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#Tipo"/>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#come"/>
+                <Class IRI="#Animal"/>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#Herbivoro"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#Tipo"/>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#come"/>
+                <Class IRI="#Planta"/>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#Omnivoro"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#Tipo"/>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#come"/>
+                <ObjectIntersectionOf>
+                    <Class IRI="#Animal"/>
+                    <Class IRI="#Planta"/>
+                </ObjectIntersectionOf>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#Terrestre"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#Habitat"/>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#vive_en"/>
+                <Class IRI="#Terrestre"/>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <SubClassOf>
+        <Class IRI="#Anfibios"/>
+        <Class IRI="#Animal"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Angiosperma"/>
+        <Class IRI="#ConFlores"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Animal"/>
+        <Class IRI="#SerVivo"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Animal"/>
+        <Class IRI="#Tipo"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Ave"/>
+        <Class IRI="#Animal"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ConFlores"/>
+        <Class IRI="#Planta"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Delfin"/>
+        <Class IRI="#Mamífero"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Delfin"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#come"/>
+            <Class IRI="#Animal"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Delfin"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#vive_en"/>
+            <Class IRI="#Acuatico"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Gimnosperma"/>
+        <Class IRI="#ConFlores"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Helecho"/>
+        <Class IRI="#SinFlores"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Humano"/>
+        <Class IRI="#Mamífero"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Humano"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#come"/>
+            <ObjectIntersectionOf>
+                <Class IRI="#Animal"/>
+                <Class IRI="#Planta"/>
+            </ObjectIntersectionOf>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Leon"/>
+        <Class IRI="#Mamífero"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Leon"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#come"/>
+            <Class IRI="#Animal"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Leon"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#vive_en"/>
+            <Class IRI="#Terrestre"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Mamífero"/>
+        <Class IRI="#Animal"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Musgo"/>
+        <Class IRI="#SinFlores"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Planta"/>
+        <Class IRI="#SerVivo"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Reptiles"/>
+        <Class IRI="#Animal"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#SinFlores"/>
+        <Class IRI="#Planta"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Vaca"/>
+        <Class IRI="#Mamífero"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Vaca"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#come"/>
+            <Class IRI="#Planta"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Vaca"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#vive_en"/>
+            <Class IRI="#Terrestre"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <ClassAssertion>
+        <Class IRI="#Leon"/>
+        <NamedIndividual IRI="#pepe"/>
+    </ClassAssertion>
+    <InverseObjectProperties>
+        <ObjectProperty IRI="#come"/>
+        <ObjectProperty IRI="#es_comido_por"/>
+    </InverseObjectProperties>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#come"/>
+        <Class IRI="#Tipo"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#es_comido_por"/>
+        <Class IRI="#SerVivo"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#vive_en"/>
+        <Class IRI="#Habitat"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#come"/>
+        <Class IRI="#SerVivo"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#es_comido_por"/>
+        <Class IRI="#Tipo"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#vive_en"/>
+        <Class IRI="#Animal"/>
+    </ObjectPropertyRange>
+</Ontology>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+
